@@ -1,0 +1,51 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  LAMBDA_BUCKET: your-s3-artifact-bucket-name
+  AWS_REGION: us-east-1
+  CDK_STAGE: dev
+  BUILD_VERSION: $(Build.BuildNumber)  # Standard Azure build number, e.g., 20240427.1
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+
+  - script: |
+      npm install
+      npm run build:all
+    displayName: 'Install Dependencies and Build Project'
+
+  # ➡️ New step: Zip Lambda Functions and use Build Number
+  - script: |
+      cd build/lambdas
+      for dir in */; do
+        dir=${dir%*/}
+        echo "Zipping $dir as ${dir}_$(Build.BuildNumber).zip"
+        cd "$dir"
+        zip -r "../${dir}_$(Build.BuildNumber).zip" .
+        cd ..
+      done
+    displayName: 'Zip Lambda artifacts with Build Number'
+
+  # ➡️ Upload only the zipped artifacts to S3
+  - task: AWSCLI@1
+    inputs:
+      awsCredentials: 'aws-service-connection'
+      regionName: '$(AWS_REGION)'
+      command: 's3 sync'
+      arguments: 'build/lambdas/ s3://$(LAMBDA_BUCKET)/lambdas/ --exclude "*" --include "*.zip"'
+    displayName: 'Upload Lambda Zips to S3'
+
+  # ➡️ Deploy CDK Stack
+  - script: |
+      cd cdk
+      npm install
+      npx cdk deploy $(CDK_STAGE)-CreateUserStack --require-approval never --context stage=$(CDK_STAGE) --context buildVersion=$(Build.BuildNumber)
+    displayName: 'Deploy CDK Stack'

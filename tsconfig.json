@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "build",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@shared/*": ["shared/*"]
+    }
+  },
+  "include": ["src/**/*", "esbuild.config.ts"],
+  "exclude": ["node_modules", "build"]
+}

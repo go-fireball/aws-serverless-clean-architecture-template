@@ -1,0 +1,10 @@
+node_modules/
+build/
+.env
+dist/
+coverage/
+.idea/
+package-lock.json
+cdk/node_modules/
+cdk/cdk.out/
+cdk/package-lock.json

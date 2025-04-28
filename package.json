@@ -1,0 +1,34 @@
+{
+  "name": "aws-serverless-clean-architecture-template",
+  "version": "1.0.0",
+  "description": "Production-grade AWS Serverless Lambda backend with Clean Architecture using Node.js, TypeScript, CDK, and S3 artifact deployments.",
+  "scripts": {
+    "build:lambdas": "ts-node esbuild.config.ts",
+    "build:cdk": "cd cdk && npm install && npm run build",
+    "build:all": "npm run build:lambdas && npm run build:cdk",
+    "test": "jest",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.149",
+    "@types/fs-extra": "^11.0.4",
+    "@types/jest": "^29.5.10",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "aws-lambda": "^1.0.7",
+    "esbuild": "^0.25.3",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "fs-extra": "^11.1.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.5",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.798.0",
+    "axios": "^1.9.0"
+  }
+}
