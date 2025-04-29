@@ -1,10 +1,10 @@
 import { SQSEvent, Handler, Context } from 'aws-lambda';
-import { withLambdaContext } from '@shared/utils/logger';
+import { getLoggerWithTraceContext } from '@shared/utils/logger';
 import { MessageProcessorService } from '@shared/business-services/message-processor.service';
 
 export const handler: Handler<SQSEvent> = async (event:SQSEvent, context:Context) => {
 
-  const log = withLambdaContext(context);
+  const log = getLoggerWithTraceContext(context);
 
   const messageProcessorService = new MessageProcessorService(log);
 

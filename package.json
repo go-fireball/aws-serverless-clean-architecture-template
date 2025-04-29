@@ -32,6 +32,7 @@
     "@aws-sdk/client-dynamodb": "^3.798.0",
     "axios": "^1.9.0",
     "datadog-lambda-js": "^10.124.0",
+    "dd-trace": "^5.49.1",
     "pino": "^9.6.0"
   }
 }
