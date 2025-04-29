@@ -4,7 +4,8 @@ import { CreateUserStack } from '../lib/stacks/create-user-stack';
 import { devConfig } from '../lib/config/dev-config';
 import { uatConfig } from '../lib/config/uat-config';
 import { prodConfig } from '../lib/config/prod-config';
-import { ProcessQueueStack } from '../lib/stacks/create-queue-stack';
+import { ProcessQueueStack } from '../lib/stacks/process-queue-stack';
+
 
 const app = new cdk.App();
 
