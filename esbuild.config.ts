@@ -21,7 +21,8 @@ async function buildAllLambdas() {
                 sourcemap: true,
                 minify: true,
                 external: [
-
+                    'datadog-lambda-js',
+                    'dd-trace'
                 ],
                 loader: {
                     '.test.ts': 'empty'
