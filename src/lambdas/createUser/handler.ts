@@ -3,6 +3,7 @@ import { UserRepository } from '@shared/data-services/user.repository';
 import { PaymentServiceClient } from '@shared/service-clients/payment.service-client';
 import { APIGatewayProxyHandler } from '@shared/types/api-gateway.types';
 import { logger } from '@shared/utils/logger';
+import { datadog } from 'datadog-lambda-js';
 
 
 export const userService = new UserService(
@@ -10,7 +11,7 @@ export const userService = new UserService(
     new PaymentServiceClient(),
 );
 
-export const handler: APIGatewayProxyHandler = async (event) => {
+export const createUserHandler: APIGatewayProxyHandler = async (event) => {
     try {
         const body = JSON.parse(event.body || '{}');
 
@@ -31,3 +32,5 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         };
     }
 };
+
+export const handler = datadog(createUserHandler);
