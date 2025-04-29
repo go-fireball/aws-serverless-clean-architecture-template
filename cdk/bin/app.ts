@@ -4,6 +4,7 @@ import { CreateUserStack } from '../lib/stacks/create-user-stack';
 import { devConfig } from '../lib/config/dev-config';
 import { uatConfig } from '../lib/config/uat-config';
 import { prodConfig } from '../lib/config/prod-config';
+import { ProcessQueueStack } from '../lib/stacks/create-queue-stack';
 
 const app = new cdk.App();
 
@@ -31,4 +32,11 @@ new CreateUserStack(app, `${config.envName}-CreateUserStack`, {
   env: { account: config.account, region: config.region },
   config,
   buildVersion, // Pass explicitly to your Stack
+});
+
+
+new ProcessQueueStack(app, `${config.envName}-ProcessQueueStack`, {
+  env: { account: config.account, region: config.region },
+  config,
+  buildVersion,
 });
