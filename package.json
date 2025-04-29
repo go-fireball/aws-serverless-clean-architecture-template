@@ -30,9 +30,11 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.798.0",
+    "@aws-sdk/client-secrets-manager": "^3.799.0",
     "axios": "^1.9.0",
     "datadog-lambda-js": "^10.124.0",
     "dd-trace": "^5.49.1",
+    "graphql": "^16.11.0",
     "pino": "^9.6.0"
   }
 }

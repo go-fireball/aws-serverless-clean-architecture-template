@@ -30,7 +30,7 @@ switch (stage) {
 
 // Pass buildVersion inside stack props if needed
 new CreateUserStack(app, `${config.envName}-CreateUserStack`, {
-  env: { account: config.account, region: config.region },
+  env: { account: config.account, region: config.region},
   config,
   buildVersion, // Pass explicitly to your Stack
 });

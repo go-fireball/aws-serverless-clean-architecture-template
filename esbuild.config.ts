@@ -20,7 +20,9 @@ async function buildAllLambdas() {
                 outdir: path.join(buildDir, func),
                 sourcemap: true,
                 minify: true,
-                external: [],
+                external: [
+
+                ],
                 loader: {
                     '.test.ts': 'empty'
                 }

@@ -5,7 +5,6 @@ import * as lambda from 'aws-cdk-lib/aws-lambda';
 interface CreateUserStackProps extends StackProps {
   config: { envName: string; s3BucketName: string; lambdaEnvVars: Record<string, string> };
   buildVersion: string;
-  lambdaEnvVars: { [key: string]: string };
 }
 
 export class CreateUserStack extends Stack {
