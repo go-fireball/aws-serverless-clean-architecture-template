@@ -1,8 +1,10 @@
-export class MessageProcessorService {
-  constructor() {}
+import { Logger } from 'pino';
 
-  async processMessage(message: never): Promise<void> {
-    console.log('Processing SQS Message:', JSON.stringify(message, null, 2));
-    // Future: Add actual business logic here
+export class MessageProcessorService {
+  constructor(private readonly logger: Logger) {}
+
+  async processMessage(message: unknown): Promise<void> {
+    this.logger.info('Processing message inside service', { message });
+    // Future logic here
   }
 }

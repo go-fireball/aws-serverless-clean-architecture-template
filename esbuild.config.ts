@@ -16,7 +16,7 @@ async function buildAllLambdas() {
                 entryPoints: [path.join(funcPath, 'handler.ts')],
                 bundle: true,
                 platform: 'node',
-                target: 'node18',
+                target: 'node20',
                 outdir: path.join(buildDir, func),
                 sourcemap: true,
                 minify: true,

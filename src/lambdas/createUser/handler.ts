@@ -2,7 +2,8 @@ import { UserService } from '@shared/business-services/user.service';
 import { UserRepository } from '@shared/data-services/user.repository';
 import { PaymentServiceClient } from '@shared/service-clients/payment.service-client';
 import { APIGatewayProxyHandler } from '@shared/types/api-gateway.types';
-import { logInfo } from '@shared/utils/logger';
+import { logger } from '@shared/utils/logger';
+
 
 export const userService = new UserService(
     new UserRepository(),
@@ -23,7 +24,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
             body: JSON.stringify(newUser),
         };
     } catch (error) {
-        logInfo('Error creating user: ' + error);
+        logger.error('Error creating user: ' + error);
         return {
             statusCode: 500,
             body: JSON.stringify({ error: 'Internal Server Error' }),
